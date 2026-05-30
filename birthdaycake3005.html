@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    font-family:Arial,sans-serif;
+    overflow:hidden;
+}
+
+h1{
+    color:white;
+    text-shadow:2px 2px 5px rgba(0,0,0,.3);
+}
+
+.cake{
+    font-size:120px;
+}
+
+.candle{
+    font-size:60px;
+    cursor:pointer;
+    animation:flicker .6s infinite alternate;
+}
+
+@keyframes flicker{
+    from{transform:rotate(-3deg);}
+    to{transform:rotate(3deg);}
+}
+
+.message{
+    display:none;
+    margin-top:20px;
+    color:white;
+    font-size:22px;
+    text-align:center;
+    max-width:500px;
+    padding:0 20px;
+}
+
+.firework{
+    position:absolute;
+    font-size:30px;
+    animation:boom 2s forwards;
+}
+
+@keyframes boom{
+    from{
+        transform:translateY(0) scale(0);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-250px) scale(2);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎉 Happy Birthday 🎉</h1>
+
+<div class="cake">🎂</div>
+
+<div id="candle" class="candle">🕯️</div>
+
+<p style="color:white">Nhấn vào ngọn nến để thổi nhé ✨</p>
+
+<div id="message" class="message">
+   Wish all the best for you, today and everyday. . . 🎉❤️<br><br>
+     
+</div>
+
+<script>
+const candle = document.getElementById("candle");
+const message = document.getElementById("message");
+
+candle.onclick = () => {
+    candle.innerHTML = "💨";
+
+    message.style.display = "block";
+
+    for(let i=0;i<30;i++){
+        const fw = document.createElement("div");
+        fw.className = "firework";
+        fw.innerHTML = ["🎆","✨","🎇","💖"][Math.floor(Math.random()*4)];
+
+        fw.style.left = Math.random()*100 + "vw";
+        fw.style.top = Math.random()*100 + "vh";
+
+        document.body.appendChild(fw);
+
+        setTimeout(()=>fw.remove(),2000);
+    }
+}
+</script>
+
+</body>
+</html>
